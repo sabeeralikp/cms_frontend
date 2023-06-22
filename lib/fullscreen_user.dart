@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'conference.dart';
+import 'conference_admin.dart';
 
 class FullScreenUser extends StatefulWidget {
   const FullScreenUser({super.key});

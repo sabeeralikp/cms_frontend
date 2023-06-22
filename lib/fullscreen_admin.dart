@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'conference.dart';
+import 'conference_admin.dart';
 
-class FullScreen extends StatefulWidget {
+class FullScreen_admin extends StatefulWidget {
   @override
-  _FullScreenState createState() => _FullScreenState();
+  _FullScreen_adminState createState() => _FullScreen_adminState();
 }
 
-class _FullScreenState extends State<FullScreen> {
+class _FullScreen_adminState extends State<FullScreen_admin> {
   String enteredText1 = '';
   String enteredText2 = '';
   String enteredText3 = '';
@@ -18,7 +18,7 @@ class _FullScreenState extends State<FullScreen> {
   // Future<List> senddata() async {
   //   final response = await http.post("THE API GOES HERE" as Uri, body: {
   //     "Title": title.text,
-      
+
   //     "Description": description.text,
   //     "Instructions": instructions.text
   //   });
@@ -87,7 +87,7 @@ class _FullScreenState extends State<FullScreen> {
                     TextButton(
                       onPressed: () {
                         setState(() {
-                         // DataMethod();
+                          // DataMethod();
                         });
                       },
                       child: Text('Save'),

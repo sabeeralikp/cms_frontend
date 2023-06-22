@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'fullscreen_input.dart';
+import 'fullscreen_admin.dart';
 
-class Conference extends StatefulWidget {
-  const Conference({super.key});
+class Conference_admin extends StatefulWidget {
+  const Conference_admin({super.key});
 
   @override
-  _ConferenceState createState() => _ConferenceState();
+  _Conference_adminState createState() => _Conference_adminState();
 }
 
 class Words {
@@ -15,7 +15,7 @@ class Words {
   Words({required this.enteredText1, required this.enteredText2});
 }
 
-class _ConferenceState extends State<Conference> {
+class _Conference_adminState extends State<Conference_admin> {
   List<Words> dataList = [];
 
   @override
@@ -52,7 +52,7 @@ class _ConferenceState extends State<Conference> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FullScreen(), fullscreenDialog: true)),
+            builder: (context) => FullScreen_admin(), fullscreenDialog: true)),
         child: const Icon(Icons.add),
       ),
     );
