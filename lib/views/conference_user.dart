@@ -27,7 +27,7 @@ class _ConferenceUserState extends State<Conference_User> {
         itemCount: dataList.length,
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.grey,
+            color: Colors.grey.shade300,
             child: ListTile(
               title: Text(
                 dataList[index],
@@ -53,6 +53,7 @@ class _ConferenceUserState extends State<Conference_User> {
           );
         },
       ),
+      
 
       // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       // floatingActionButton: FloatingActionButton(
@@ -60,82 +61,6 @@ class _ConferenceUserState extends State<Conference_User> {
       //   child: Icon(Icons.add),
       // ),
     );
-  }
-
-  void _showDialog() {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            // shape: RoundedRectangleBorder(
-
-            //   borderRadius: BorderRadius.all(radius),
-            //   ),
-            title: const Text('New Note'),
-            actions: [
-              TextField(
-                onChanged: (value) {
-                },
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: 'Enter title',
-                  enabledBorder: myInputBoder(),
-                  focusedBorder: myFocusBoder(),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              TextField(
-                onChanged: (value) {
-                  // enteredText2 = value;
-                },
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: 'Enter description',
-                  enabledBorder: myInputBoder(),
-                  focusedBorder: myFocusBoder(),
-                ),
-              ),
-              const SizedBox(height: 16.0),
-              TextField(
-                onChanged: (value) {
-                  // enteredText3 = value;
-                },
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(
-                  labelText: 'Instructions to Notice',
-                  enabledBorder: myInputBoder(),
-                  focusedBorder: myFocusBoder(),
-                ),
-                minLines: 5,
-                maxLines: null,
-              ),
-              const SizedBox(height: 16.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  //Save Button
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Cancel')),
-
-                  //Cancel Button
-                  TextButton(
-                    onPressed: () {
-                      setState(() {
-                        // dataList.add(Words(
-                        //     enteredText1: enteredText1,
-                        //     enteredText2: enteredText2));
-                      });
-                    },
-                    child: const Text('Save'),
-                  ),
-                ],
-              ),
-            ],
-          );
-        });
   }
 }
 

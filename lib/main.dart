@@ -1,8 +1,4 @@
-import 'package:cms/views/Index.dart';
-import 'package:cms/views/forgot_password.dart';
-import 'package:cms/views/profile.dart';
 import 'package:cms/views/signin.dart';
-import 'package:cms/views/signup.dart';
 import 'package:flutter/material.dart';
 
 void main() {

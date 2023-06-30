@@ -1,27 +1,23 @@
 import 'dart:developer';
 import 'package:cms/views/Index.dart';
+import 'package:cms/views/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:cms/views/signin.dart';
 
-class SignUpScreen extends StatefulWidget {
+class editScreen extends StatefulWidget {
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  _editScreenState createState() => _editScreenState();
 }
 
-class _SignUpScreenState extends State<SignUpScreen> {
+class _editScreenState extends State<editScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   late String? _passwordError = null;
 
-  late String? _emailError = null;
-
-  late String _email;
   late String _password;
 
   @override
   void dispose() {
-    _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -30,12 +26,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
 
-      print('Email: $_email');
       print('Password: $_password');
 
-      print('Signed in successfully');
-
-      _emailController.clear();
       _passwordController.clear();
     }
   }
@@ -44,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Register'),
+        title: Text('Edit'),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
@@ -75,35 +67,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 decoration: InputDecoration(
                     labelText: 'Last Name', border: OutlineInputBorder()),
                 keyboardType: TextInputType.name,
-              ),
-              SizedBox(height: 16.0),
-
-              //Email
-              TextFormField(
-                controller: _emailController,
-                decoration: InputDecoration(
-                    labelText: 'Email',
-                    errorText: _emailError,
-                    border: OutlineInputBorder()),
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (value) {
-                  setState(() {
-                    _emailError = _validateEmail(value);
-// Set the validation status
-                  });
-                },
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your email';
-                  }
-                  if (_isValidEmail(value) != null) {
-                    return 'Please enter a valid email address';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _email = value!;
-                },
               ),
               SizedBox(height: 16.0),
 
@@ -142,7 +105,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
                 onChanged: (value) {
                   setState(() {
-// Set the validation status
+
+              // Set the validation status
                   });
                 },
               ),
@@ -165,42 +129,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 padding: const EdgeInsets.all(50.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    log('Sign Up clicked');
+                    log('Saved');
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => IndexPage()),
+                      MaterialPageRoute(builder: (context) => ProfilePage()),
                     );
                   },
-                  child: const Text('Sign in'),
+                  child: const Text('Save'),
                 ),
               ),
-
-              //Already Registered
-              TextButton(
-                  onPressed: () {
-                    log('login');
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => signInPage()),
-                    );
-                  },
-                  child: const Text('Already Registered? Sign In')),
             ],
           ),
         ),
       ),
     );
-  }
-
-  //Email Validation
-  String? _isValidEmail(String value) {
-    // Use a regular expression pattern to validate email addresses
-    final pattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
-    final regex = RegExp(pattern);
-    if (!regex.hasMatch(value)) {
-      return 'Please enter a valid email address';
-    }
-    return null;
   }
 
   String? _validateEmail(String value) {

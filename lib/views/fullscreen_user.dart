@@ -28,7 +28,18 @@ class _FullScreenUserState extends State<FullScreenUser> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Text')),
+        appBar: AppBar(
+          title: const Text('Text'),
+          actions: [
+          new TextButton(
+              onPressed: () {
+                //TODO: Handle save
+              },
+              child: new Text('Save',
+                      )
+                      ),
+        ],
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
@@ -88,27 +99,6 @@ class _FullScreenUserState extends State<FullScreenUser> {
                   ),
                 ),
                 const SizedBox(height: 16.0),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    //Save Button
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Cancel')),
-
-                    //Cancel Button
-                    ElevatedButton(
-                      onPressed: () {
-                        setState(() {
-                          // dataList.add(Words(enteredText1: enteredText1, enteredText2: enteredText2));
-                        });
-                      },
-                      child: const Text('Save'),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),

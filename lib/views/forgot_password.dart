@@ -4,26 +4,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/Index.dart';
 import 'package:cms/views/signup.dart';
 
-void main() {
-  runApp(const ForgotPAsswordPage());
-}
-
-class ForgotPAsswordPage extends StatelessWidget {
-  const ForgotPAsswordPage({Key? key}) : super(key: key);
-
-  //root of the application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Forgot Password',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
 class ForgotPasswordPage extends StatefulWidget {
   final TextEditingController passwordTextController = TextEditingController();
 

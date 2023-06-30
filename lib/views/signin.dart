@@ -5,26 +5,6 @@ import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/Index.dart';
 import 'package:cms/views/signup.dart';
 
-void main() {
-  runApp(const siginInPage());
-}
-
-class siginInPage extends StatelessWidget {
-  const siginInPage({Key? key}) : super(key: key);
-
-  //root of the application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sigin In',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
 class signInPage extends StatefulWidget {
   final TextEditingController passwordTextController = TextEditingController();
 
@@ -139,7 +119,7 @@ class signInPageState extends State<signInPage> {
                     print("Sign Up clicked");
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => signup()),
+                      MaterialPageRoute(builder: (context) => SignUpScreen()),
                     );
                   },
                   child: const Text('Dont have an account? Sign up')),

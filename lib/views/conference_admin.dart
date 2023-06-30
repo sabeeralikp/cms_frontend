@@ -23,12 +23,20 @@ class _Conference_adminState extends State<Conference_admin> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Conferences"),
+        actions: [
+          new TextButton(
+              onPressed: () {
+                //TODO: Handle save
+              },
+              child: new Text('Save',)
+            ),
+        ],
       ),
       body: ListView.builder(
         itemCount: dataList.length,
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.grey,
+            color: Colors.grey.shade300,
             child: ListTile(
               title: Text(
                 dataList[index].enteredText1,
