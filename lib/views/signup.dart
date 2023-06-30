@@ -1,6 +1,7 @@
 import 'dart:developer';
+import 'package:cms/views/Index.dart';
 import 'package:flutter/material.dart';
-import 'signin.dart';
+import 'package:cms/views/signin.dart';
 
 void main() {
   runApp(signup());
@@ -15,7 +16,6 @@ class signup extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       debugShowCheckedModeBanner: false,
-      home: SignUpScreen(),
     );
   }
 }
@@ -70,45 +70,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-             SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
               //User Name
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'User Name',
-                  border: OutlineInputBorder()
-                ),
+                    labelText: 'User Name', border: OutlineInputBorder()),
                 keyboardType: TextInputType.name,
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
 
               //F.Name
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'First Name',
-                  border: OutlineInputBorder()
-                ),
+                    labelText: 'First Name', border: OutlineInputBorder()),
                 keyboardType: TextInputType.name,
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
 
               //L.Name
               TextField(
                 decoration: InputDecoration(
-                  labelText: 'Last Name',
-                  border: OutlineInputBorder()
-                ),
+                    labelText: 'Last Name', border: OutlineInputBorder()),
                 keyboardType: TextInputType.name,
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
 
               //Email
               TextFormField(
                 controller: _emailController,
                 decoration: InputDecoration(
-                  labelText: 'Email',
-                  errorText: _emailError,
-                  border: OutlineInputBorder()
-                ),
+                    labelText: 'Email',
+                    errorText: _emailError,
+                    border: OutlineInputBorder()),
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) {
                   setState(() {
@@ -190,6 +183,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     log('Sign Up clicked');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => IndexPage()),
+                    );
                   },
                   child: const Text('Sign in'),
                 ),
@@ -201,7 +198,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     log('login');
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => siginIn()),
+                      MaterialPageRoute(builder: (context) => signInPage()),
                     );
                   },
                   child: const Text('Already Registered? Sign In')),

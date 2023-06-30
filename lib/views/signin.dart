@@ -1,16 +1,16 @@
 import 'dart:developer';
+import 'package:cms/views/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-// import 'package:password_field_validator/password_field_validator.dart';
-import 'Index.dart';
-import 'signup.dart';
+import 'package:cms/views/Index.dart';
+import 'package:cms/views/signup.dart';
 
 void main() {
-  runApp(const siginIn());
+  runApp(const siginInPage());
 }
 
-class siginIn extends StatelessWidget {
-  const siginIn({Key? key}) : super(key: key);
+class siginInPage extends StatelessWidget {
+  const siginInPage({Key? key}) : super(key: key);
 
   //root of the application.
   @override
@@ -21,22 +21,21 @@ class siginIn extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       debugShowCheckedModeBanner: false,
-      home: LogInPage(),
     );
   }
 }
 
-class LogInPage extends StatefulWidget {
+class signInPage extends StatefulWidget {
   final TextEditingController passwordTextController = TextEditingController();
 
-  LogInPage({super.key});
+  signInPage({super.key});
 
   @override
-  LogInPageState createState() => LogInPageState();
+  signInPageState createState() => signInPageState();
 }
 
 //Header
-class LogInPageState extends State<LogInPage> {
+class signInPageState extends State<signInPage> {
   String _errorMessage = '';
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
   @override
@@ -47,9 +46,9 @@ class LogInPageState extends State<LogInPage> {
       ),
 
       //Body
-      body: 
-      //Head
-      Padding(
+      body:
+          //Head
+          Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _signInKey,
@@ -60,20 +59,18 @@ class LogInPageState extends State<LogInPage> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder()),
+                    labelText: 'Email', border: OutlineInputBorder()),
                 onChanged: (val) {
                   validateEmail(val);
                 },
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
 
               //Password
               TextFormField(
                 keyboardType: TextInputType.visiblePassword,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder()),
+                    labelText: 'Password', border: OutlineInputBorder()),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -83,7 +80,7 @@ class LogInPageState extends State<LogInPage> {
                 },
                 onChanged: (val) {},
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 16.0),
 
               //Password Validation
               // Padding(
@@ -129,6 +126,10 @@ class LogInPageState extends State<LogInPage> {
               TextButton(
                   onPressed: () {
                     log('Forgot Password');
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordPage()));
                   },
                   child: const Text('Forgot Password')),
 

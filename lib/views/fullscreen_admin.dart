@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'conference_admin.dart';
+import '/views/conference_admin.dart';
 
 class FullScreen_admin extends StatefulWidget {
   @override

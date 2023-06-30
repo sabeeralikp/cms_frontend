@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'controller/conference_controller.dart';
+import '/controller/conference_controller.dart';
 import 'fullscreen_user.dart';
 
 class Conference_User extends StatefulWidget {

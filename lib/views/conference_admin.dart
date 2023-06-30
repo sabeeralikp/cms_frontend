@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'fullscreen_admin.dart';
+import './fullscreen_admin.dart';
 
 class Conference_admin extends StatefulWidget {
   const Conference_admin({super.key});
