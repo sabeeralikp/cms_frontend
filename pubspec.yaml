@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   cupertino_icons: ^1.0.5
+  dio: ^5.2.1+1
   email_validator: ^2.1.17
   flutter:
     sdk: flutter

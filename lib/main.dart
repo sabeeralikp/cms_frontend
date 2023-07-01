@@ -1,4 +1,4 @@
-import 'package:cms/views/signin.dart';
+import 'package:cms/views/auth/signin.dart';
 import 'package:flutter/material.dart';
 
 void main() {

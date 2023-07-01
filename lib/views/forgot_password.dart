@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/Index.dart';
-import 'package:cms/views/signup.dart';
+import 'package:cms/views/auth/signup.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   final TextEditingController passwordTextController = TextEditingController();

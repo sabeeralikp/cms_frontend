@@ -3,7 +3,7 @@ import 'package:cms/views/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/Index.dart';
-import 'package:cms/views/signup.dart';
+import 'package:cms/views/auth/signup.dart';
 
 class signInPage extends StatefulWidget {
   final TextEditingController passwordTextController = TextEditingController();
@@ -40,6 +40,12 @@ class signInPageState extends State<signInPage> {
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
                     labelText: 'Email', border: OutlineInputBorder()),
+                    validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'This Field cannot be Empty';
+                  }
+                  return null;
+                },
                 onChanged: (val) {
                   validateEmail(val);
                 },

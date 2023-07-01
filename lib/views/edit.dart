@@ -1,8 +1,6 @@
 import 'dart:developer';
-import 'package:cms/views/Index.dart';
 import 'package:cms/views/profile.dart';
 import 'package:flutter/material.dart';
-import 'package:cms/views/signin.dart';
 
 class editScreen extends StatefulWidget {
   @override

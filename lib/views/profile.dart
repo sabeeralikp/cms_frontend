@@ -1,6 +1,6 @@
 import 'package:cms/views/Index.dart';
 import 'package:cms/views/edit.dart';
-import 'package:cms/views/signin.dart';
+import 'package:cms/views/auth/signin.dart';
 import 'package:flutter/material.dart';
 
 class ProfilePage extends StatefulWidget {
