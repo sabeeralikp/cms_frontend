@@ -1,14 +1,34 @@
 import 'dart:developer';
+import 'package:cms/views/auth/widgets/EmailWidget.dart';
+import 'package:cms/views/auth/widgets/passswordWidget.dart';
 import 'package:cms/views/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/Index.dart';
 import 'package:cms/views/auth/signup.dart';
+import '../../api/api_siginin.dart';
 
 class signInPage extends StatefulWidget {
+    final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
   signInPage({super.key});
+
+   final ApiService _apiService = ApiService();
+
+  void _signIn() async {
+    final email = emailController.text;
+    final password = passwordTextController.text;
+
+    try {
+      final response = await _apiService.signIn(email, password);
+      // Process the response here
+      // e.g., check status code, parse JSON response, etc.
+    } catch (error) {
+      // Handle error
+      print('Error signing in: $error');
+    }
+  }
 
   @override
   signInPageState createState() => signInPageState();
@@ -17,7 +37,11 @@ class signInPage extends StatefulWidget {
 //Header
 class signInPageState extends State<signInPage> {
   String _errorMessage = '';
+      final TextEditingController email_Controller = TextEditingController();
+            final TextEditingController passwordController = TextEditingController();
+
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,36 +60,43 @@ class signInPageState extends State<signInPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //Email
-              TextFormField(
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                    labelText: 'Email', border: OutlineInputBorder()),
-                    validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'This Field cannot be Empty';
-                  }
-                  return null;
-                },
-                onChanged: (val) {
-                  validateEmail(val);
-                },
-              ),
+              EmailWidget(
+                emailController: email_Controller
+                ),
+              // TextFormField(
+              //   keyboardType: TextInputType.emailAddress,
+              //   decoration: const InputDecoration(
+              //       labelText: 'Email', border: OutlineInputBorder()),
+              //       validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'This Field cannot be Empty';
+              //     }
+              //     return null;
+              //   },
+              //   onChanged: (val) {
+              //     validateEmail(val);
+              //   },
+              // ),
               SizedBox(height: 16.0),
 
               //Password
-              TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                decoration: const InputDecoration(
-                    labelText: 'Password', border: OutlineInputBorder()),
-                obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'This Field cannot be Empty';
-                  }
-                  return null;
-                },
-                onChanged: (val) {},
-              ),
+
+              PasswordWidget(
+                passwordController: passwordController
+                ),
+              // TextFormField(
+              //   keyboardType: TextInputType.visiblePassword,
+              //   decoration: const InputDecoration(
+              //       labelText: 'Password', border: OutlineInputBorder()),
+              //   obscureText: true,
+              //   validator: (value) {
+              //     if (value == null || value.isEmpty) {
+              //       return 'This Field cannot be Empty';
+              //     }
+              //     return null;
+              //   },
+              //   onChanged: (val) {},
+              // ),
               SizedBox(height: 16.0),
 
               //Password Validation

@@ -18,17 +18,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController email_Controller = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmpassword = TextEditingController();
+    final TextEditingController user_name = TextEditingController();
+
 
   late Dio _dio;
-
-  // final String? _passwordError = null;
-  // final String? _confirmpasswordError = null;
-  // final String? _emailError = null;
 
   @override
   void initState() {
     super.initState();
-    // _dio = Dio();
+    _dio = Dio();
   }
 
   @override
@@ -42,11 +40,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Future<void> _registerUser() async {
     final String email = email_Controller.text;
     final String password = _passwordController.text;
+    final String username = user_name.text;
+
 
     try {
       final response = await _dio.post(
-        baseURL,
-        data: {'email': email, 'password': password},
+        '$baseURL/registration',
+        data: {'email': email, 'password': password, 'user_name':username},
       );
 
       // Process the response here (e.g., handle success or error messages)
@@ -60,9 +60,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   void validateForm() {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
-
-      // print('Email: $_email');
-      // print('Password: $_password');
 
       print('Signed in successfully');
 
@@ -87,8 +84,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(height: 16.0),
               //User Name
               TextFieldWidget(
-                labelText: 'User Name',
-              ),
+                labelText: 'User Name'
+                ),
               SizedBox(height: 16.0),
 
               //F.Name
@@ -121,7 +118,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 decoration: InputDecoration(
                   labelText: 'Confirm Password',
                   border: OutlineInputBorder(),
-                  // errorText: _confirmpasswordError,
                 ),
                 obscureText: true,
                 validator: (value) {
@@ -137,7 +133,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 onChanged: (value) {
                   setState(() {
                     _confirmpassword == false;
-                    // _confirmpasswordError = passwordValidator(value);
                     if (_passwordController.text == _confirmpassword.text) {
                       _confirmpassword == true;
                     }
@@ -151,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 padding: const EdgeInsets.all(50.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    // _registerUser();
+                    //_registerUser();
                     log('Sign Up clicked');
                     validateForm();
                     // Navigator.push(
