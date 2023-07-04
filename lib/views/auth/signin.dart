@@ -9,19 +9,21 @@ import 'package:cms/views/auth/signup.dart';
 import '../../api/api_siginin.dart';
 
 class signInPage extends StatefulWidget {
-    final TextEditingController emailController = TextEditingController();
+  
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
   signInPage({super.key});
 
-   final ApiService _apiService = ApiService();
+  final ApiService _apiService = ApiService();
 
-  void _signIn() async {
+  void signIn() async {
     final email = emailController.text;
     final password = passwordTextController.text;
 
     try {
       final response = await _apiService.signIn(email, password);
+      print(response);
       // Process the response here
       // e.g., check status code, parse JSON response, etc.
     } catch (error) {
@@ -37,11 +39,14 @@ class signInPage extends StatefulWidget {
 //Header
 class signInPageState extends State<signInPage> {
   String _errorMessage = '';
-      final TextEditingController email_Controller = TextEditingController();
-            final TextEditingController passwordController = TextEditingController();
+  final TextEditingController email_Controller = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  FocusNode eMail = FocusNode();
+  FocusNode password = FocusNode();
 
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,8 +66,11 @@ class signInPageState extends State<signInPage> {
             children: [
               //Email
               EmailWidget(
-                emailController: email_Controller
-                ),
+                emailController: email_Controller,
+                FocusNode: eMail, 
+                
+                nextField: password,
+              ),
               // TextFormField(
               //   keyboardType: TextInputType.emailAddress,
               //   decoration: const InputDecoration(
@@ -82,7 +90,10 @@ class signInPageState extends State<signInPage> {
               //Password
 
               PasswordWidget(
-                passwordController: passwordController
+                passwordController: passwordController, 
+                FocusNode:password , 
+                nextField: null
+                ,
                 ),
               // TextFormField(
               //   keyboardType: TextInputType.visiblePassword,
@@ -152,6 +163,7 @@ class signInPageState extends State<signInPage> {
 
               //Register
               TextButton(
+                  //  _signIn();
                   onPressed: () {
                     print("Sign Up clicked");
                     Navigator.push(

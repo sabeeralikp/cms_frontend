@@ -90,9 +90,26 @@ class _ProfilePageState extends State<ProfilePage> {
                   leading: Icon(Icons.logout),
                   title: Text('Logout'),
                   onTap:() {
-                    Navigator.push(
-                      context, MaterialPageRoute(
-                        builder: (context)=>signInPage() ));
+                    showDialog<String>(
+                        context: context,
+                        builder: (BuildContext context) => AlertDialog(
+                          title: const Text('LogOut'),
+                          content: const Text('Do you Really want to logout?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                              child: const Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>signInPage())),
+                              child: const Text('Logout'),
+                            ),
+                          ],
+                        ),
+                      );
+                    // Navigator.push(
+                    //   context, MaterialPageRoute(
+                    //     builder: (context)=>signInPage() ));
                   }, 
                 ),
               ]))

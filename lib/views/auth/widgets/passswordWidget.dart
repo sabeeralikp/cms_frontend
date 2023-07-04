@@ -2,11 +2,15 @@ import 'package:cms/views/auth/widgets/passwordValidator.dart';
 import 'package:flutter/material.dart';
 
 class PasswordWidget extends StatefulWidget {
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordController;
+  final FocusNode;
+  final nextField;
   // final String passwordError;
 
   PasswordWidget({
-    required TextEditingController passwordController,
+    required this.passwordController,
+    required this.FocusNode,
+    required this.nextField,
     // required this.passwordError,
   });
 
@@ -19,6 +23,10 @@ class _PasswordWidgetState extends State<PasswordWidget> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.passwordController,
+      focusNode: widget.FocusNode,
+       onFieldSubmitted: (value) {
+          FocusScope.of(context).requestFocus(widget.nextField);
+        },
       decoration: InputDecoration(
         labelText: 'Password',
         border: OutlineInputBorder(),
