@@ -7,6 +7,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/Index.dart';
 import 'package:cms/views/auth/signup.dart';
 import '../../api/api_siginin.dart';
+import '../../routes/route.dart';
 
 class signInPage extends StatefulWidget {
   
@@ -133,10 +134,13 @@ class signInPageState extends State<signInPage> {
                   onPressed: () {
                     print("Sign in Clicked");
                     if (_signInKey.currentState!.validate()) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => IndexPage()),
-                      );
+
+                        Navigator.of(context).pushNamed(RouteProvider.home);
+
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(builder: (context) => IndexPage()),
+                      // );
                     }
                   },
                   child: const Text('Sign in'),
@@ -154,6 +158,8 @@ class signInPageState extends State<signInPage> {
               TextButton(
                   onPressed: () {
                     log('Forgot Password');
+                      // Navigator.of(context).pushNamed(RouteProvider.signIn);
+
                     Navigator.push(
                         context,
                         MaterialPageRoute(
