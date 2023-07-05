@@ -1,55 +1,33 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-// import 'package:password_field_validator/password_field_validator.dart';
-import 'Index.dart';
-import 'signup.dart';
+import 'package:cms/views/Index.dart';
+import 'package:cms/views/auth/signup.dart';
 
-void main() {
-  runApp(const siginIn());
-}
-
-class siginIn extends StatelessWidget {
-  const siginIn({Key? key}) : super(key: key);
-
-  //root of the application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Sigin In',
-      theme: ThemeData(
-        primarySwatch: Colors.blueGrey,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: LogInPage(),
-    );
-  }
-}
-
-class LogInPage extends StatefulWidget {
+class ForgotPasswordPage extends StatefulWidget {
   final TextEditingController passwordTextController = TextEditingController();
 
-  LogInPage({super.key});
+  ForgotPasswordPage({super.key});
 
   @override
-  LogInPageState createState() => LogInPageState();
+  ForgotPasswordPageState createState() => ForgotPasswordPageState();
 }
 
 //Header
-class LogInPageState extends State<LogInPage> {
+class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   String _errorMessage = '';
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sigin In'),
+        title: const Text('Forgot Password'),
       ),
 
       //Body
-      body: 
-      //Head
-      Padding(
+      body:
+          //Head
+          Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
           key: _signInKey,
@@ -60,20 +38,35 @@ class LogInPageState extends State<LogInPage> {
               TextFormField(
                 keyboardType: TextInputType.emailAddress,
                 decoration: const InputDecoration(
-                  labelText: 'Email',
-                  border: OutlineInputBorder()),
+                    labelText: 'Email', border: OutlineInputBorder()),
                 onChanged: (val) {
                   validateEmail(val);
                 },
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 10.0),
+
+              //Button
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    print("OTP Send Successfully");
+                    if (_signInKey.currentState!.validate()) {
+                      log("OTP Send Successfully");
+                    } else {
+                      log('Enter Valid Email');
+                    }
+                  },
+                  child: const Text('Send OTP'),
+                ),
+              ),
+              SizedBox(height: 16.0),
 
               //Password
               TextFormField(
-                keyboardType: TextInputType.visiblePassword,
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder()),
+                    labelText: 'OTP', border: OutlineInputBorder()),
                 obscureText: true,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -83,7 +76,7 @@ class LogInPageState extends State<LogInPage> {
                 },
                 onChanged: (val) {},
               ),
-               SizedBox(height: 16.0),
+              SizedBox(height: 10.0),
 
               //Password Validation
               // Padding(
@@ -106,7 +99,7 @@ class LogInPageState extends State<LogInPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Sign in Clicked");
+                    print("Verified");
                     if (_signInKey.currentState!.validate()) {
                       Navigator.push(
                         context,
@@ -114,7 +107,7 @@ class LogInPageState extends State<LogInPage> {
                       );
                     }
                   },
-                  child: const Text('Sign in'),
+                  child: const Text('Verify'),
                 ),
               ),
               Padding(
@@ -125,20 +118,13 @@ class LogInPageState extends State<LogInPage> {
                 ),
               ),
 
-              //Forgot Password
-              TextButton(
-                  onPressed: () {
-                    log('Forgot Password');
-                  },
-                  child: const Text('Forgot Password')),
-
               //Register
               TextButton(
                   onPressed: () {
                     print("Sign Up clicked");
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => signup()),
+                      MaterialPageRoute(builder: (context) => SignUpScreen()),
                     );
                   },
                   child: const Text('Dont have an account? Sign up')),
