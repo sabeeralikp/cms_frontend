@@ -1,16 +1,15 @@
 import 'dart:developer';
 import 'package:cms/views/auth/widgets/EmailWidget.dart';
 import 'package:cms/views/auth/widgets/passswordWidget.dart';
-import 'package:cms/views/forgot_password.dart';
+// import 'package:cms/views/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:cms/views/Index.dart';
+// import 'package:cms/views/Index.dart';
 import 'package:cms/views/auth/signup.dart';
 import '../../api/api_siginin.dart';
 import '../../routes/route.dart';
 
 class signInPage extends StatefulWidget {
-  
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordTextController = TextEditingController();
 
@@ -68,8 +67,7 @@ class signInPageState extends State<signInPage> {
               //Email
               EmailWidget(
                 emailController: email_Controller,
-                FocusNode: eMail, 
-                
+                FocusNode: eMail,
                 nextField: password,
               ),
               // TextFormField(
@@ -91,11 +89,10 @@ class signInPageState extends State<signInPage> {
               //Password
 
               PasswordWidget(
-                passwordController: passwordController, 
-                FocusNode:password , 
-                nextField: null
-                ,
-                ),
+                passwordController: passwordController,
+                FocusNode: password,
+                nextField: null,
+              ),
               // TextFormField(
               //   keyboardType: TextInputType.visiblePassword,
               //   decoration: const InputDecoration(
@@ -134,8 +131,7 @@ class signInPageState extends State<signInPage> {
                   onPressed: () {
                     print("Sign in Clicked");
                     if (_signInKey.currentState!.validate()) {
-
-                        Navigator.of(context).pushNamed(RouteProvider.home);
+                      Navigator.of(context).pushNamed(RouteProvider.home);
 
                       // Navigator.push(
                       //   context,
@@ -158,12 +154,12 @@ class signInPageState extends State<signInPage> {
               TextButton(
                   onPressed: () {
                     log('Forgot Password');
-                      // Navigator.of(context).pushNamed(RouteProvider.signIn);
+                    Navigator.of(context).pushNamed(RouteProvider.forgot);
 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ForgotPasswordPage()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => ForgotPasswordPage()));
                   },
                   child: const Text('Forgot Password')),
 
@@ -172,6 +168,7 @@ class signInPageState extends State<signInPage> {
                   //  _signIn();
                   onPressed: () {
                     print("Sign Up clicked");
+                    // Navigator.of(context).pushNamed(RouteProvider.signUp);
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => SignUpScreen()),

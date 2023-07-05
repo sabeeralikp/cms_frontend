@@ -3,7 +3,7 @@ import 'package:cms/routes/route.dart';
 import 'package:cms/views/verification.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:cms/views/auth/signin.dart';
+// import 'package:cms/views/auth/signin.dart';
 import 'package:cms/views/auth/widgets/TextFieldWidget.dart';
 import 'package:cms/views/auth/widgets/EmailWidget.dart';
 import 'package:cms/api/api.dart';
@@ -77,19 +77,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
         },
       );
       if (response!.statusCode == 200 || response!.statusCode == 201) {
-        
-           Navigator.of(context).pushNamed(RouteProvider.validate);
+        // Navigator.of(context).pushNamed(RouteProvider.validate);
 
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(builder: (context) => verificationPage()),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => verificationPage()),
+        );
       } else {
-        print(response!.data);
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(response!.data),
+          duration: const Duration(milliseconds: 1500),
+          width: 280.0, // Width of the SnackBar.
+          padding: const EdgeInsets.symmetric(
+            horizontal: 8.0, // Inner padding for SnackBar content.
+          ),
+          behavior: SnackBarBehavior.floating,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ));
+        log("User already exists");
       }
-
-      // Process the response here (e.g., handle success or error messages)
-      // log(response!.data.toString());
       log(response!.statusCode.toString());
     } catch (error) {
       // Handle any errors that occurred during the registration process
@@ -116,111 +124,91 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 16.0),
-              //User Name
-              TextFieldWidget(
-                labelText: 'User Name',
-                textController: user_name,
-                FocusNode: UserName,
-                nextField: FirstName,
-              ),
-              SizedBox(height: 16.0),
+        child: SingleChildScrollView(
+          child: Form(
+            key: _formKey,
+            child: ListView(
+              shrinkWrap: true,
+              padding: EdgeInsets.all(16.0),
+              children: [
+                SizedBox(height: 16.0),
 
-              //F.Name
-              TextFieldWidget(
-                labelText: 'First Name',
-                textController: first_name,
-                FocusNode: FirstName,
-                nextField: LastName,
-              ),
-              SizedBox(height: 16.0),
-
-              //L.Name
-              TextFieldWidget(
-                labelText: 'Last Name',
-                textController: last_name,
-                FocusNode: LastName,
-                nextField: eMail,
-              ),
-              SizedBox(height: 16.0),
-
-              //Email
-              EmailWidget(
-                emailController: emailController,
-                FocusNode: eMail,
-                nextField: password,
-              ),
-              SizedBox(height: 16.0),
-
-              //Password
-              PasswordWidget(
-                passwordController: _passwordController,
-                FocusNode: password,
-                nextField: cnfrm,
-              ),
-              SizedBox(height: 16.0),
-
-              //cnfrm pwd
-              TextFormField(
-                controller: _confirmpassword,
-                focusNode: cnfrm,
-                decoration: InputDecoration(
-                  labelText: 'Confirm Password',
-                  border: OutlineInputBorder(),
+                //User Name
+                TextFieldWidget(
+                  labelText: 'User Name',
+                  textController: user_name,
+                  FocusNode: UserName,
+                  nextField: FirstName,
                 ),
-                obscureText: true,
-                // validator: (value) {
-                //   if (value!.isEmpty) {
-                //     return 'Please re-enter password';
-                //   }
-                //   // print(_confirmpassword.text);
-                //   else if (_passwordController.text != _confirmpassword.text) {
-                //     return "Password does not match";
-                //   }
-                //   return null;
-                // },
-                // onChanged: (value) {
-                //   setState(() {
-                //     _confirmpassword == false;
-                //     if (_passwordController.text == _confirmpassword.text) {
-                //       _confirmpassword == true;
-                //     }
-                //   });
-                // },
-              ),
-              SizedBox(height: 16.0),
+                SizedBox(height: 16.0),
 
-              //Button
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    validateForm();
-                    _registerUser();
-                    // log('Sign Up clicked');
-                  },
-                  child: const Text('Sign Up'),
+                //F.Name
+                TextFieldWidget(
+                  labelText: 'First Name',
+                  textController: first_name,
+                  FocusNode: FirstName,
+                  nextField: LastName,
                 ),
-              ),
+                SizedBox(height: 16.0),
 
-              //Already Registered
-              TextButton(
-                  onPressed: () {
-                    log('Already registered');
-                    Navigator.of(context).pushNamed(RouteProvider.signUp);
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => signInPage()),
-                    //   // (route) => false,
-                    // );
-                  },
-                  child: const Text('Already Registered? Sign In')),
-            ],
+                //L.Name
+                TextFieldWidget(
+                  labelText: 'Last Name',
+                  textController: last_name,
+                  FocusNode: LastName,
+                  nextField: eMail,
+                ),
+                SizedBox(height: 16.0),
+
+                //Email
+                EmailWidget(
+                  emailController: emailController,
+                  FocusNode: eMail,
+                  nextField: password,
+                ),
+                SizedBox(height: 16.0),
+
+                //Password
+                PasswordWidget(
+                  passwordController: _passwordController,
+                  FocusNode: password,
+                  nextField: cnfrm,
+                ),
+                SizedBox(height: 16.0),
+
+                //cnfrm pwd
+                TextFormField(
+                  controller: _confirmpassword,
+                  focusNode: cnfrm,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    border: OutlineInputBorder(),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 16.0),
+
+                //Button
+                Padding(
+                  padding: const EdgeInsets.all(50.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      validateForm();
+                      _registerUser();
+                    },
+                    child: const Text('Sign Up'),
+                  ),
+                ),
+
+                //Already Registered
+                TextButton(
+                    onPressed: () {
+                      log('Already registered');
+                      Navigator.of(context).pushNamed(RouteProvider.signUp);
+                    },
+                    child: const Text('Already Registered? Sign In')),
+              ],
+            ),
           ),
         ),
       ),
