@@ -1,36 +1,37 @@
 import 'dart:developer';
 import 'package:cms/views/auth/widgets/EmailWidget.dart';
 import 'package:cms/views/auth/widgets/passswordWidget.dart';
-// import 'package:cms/views/forgot_password.dart';
+import 'package:cms/views/forgot_password.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-// import 'package:cms/views/Index.dart';
+import 'package:cms/views/Index.dart';
 import 'package:cms/views/auth/signup.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../api/api_siginin.dart';
-import '../../routes/route.dart';
+// import '../../routes/route.dart';
 
 class signInPage extends StatefulWidget {
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordTextController = TextEditingController();
+  // final TextEditingController emailController = TextEditingController();
+  // final TextEditingController passwordTextController = TextEditingController();
 
   signInPage({super.key});
 
-  final ApiService _apiService = ApiService();
+  // final ApiService _apiService = ApiService();
 
-  void signIn() async {
-    final email = emailController.text;
-    final password = passwordTextController.text;
+  // void signIn() async {
+  //   final email = emailController.text;
+  //   final password = passwordTextController.text;
 
-    try {
-      final response = await _apiService.signIn(email, password);
-      print(response);
-      // Process the response here
-      // e.g., check status code, parse JSON response, etc.
-    } catch (error) {
-      // Handle error
-      print('Error signing in: $error');
-    }
-  }
+  //   try {
+  //     final response = await _apiService.signIn(email, password);
+  //     print(response);
+  //     // Process the response here
+  //     // e.g., check status code, parse JSON response, etc.
+  //   } catch (error) {
+  //     // Handle error
+  //     print('Error signing in: $error');
+  //   }
+  // }
 
   @override
   signInPageState createState() => signInPageState();
@@ -45,13 +46,31 @@ class signInPageState extends State<signInPage> {
   FocusNode eMail = FocusNode();
   FocusNode password = FocusNode();
 
+  final ApiService _apiService = ApiService();
+
+  void signIn() async {
+    final email = email_Controller.text;
+    final password = passwordController.text;
+
+    try {
+      final response = await _apiService.signIn(email, password);
+      print(response);
+      // Process the response here
+      // e.g., check status code, parse JSON response, etc.
+    } catch (error) {
+      // Handle error
+      print('Error signing in: $error');
+    }
+  }
+
   final GlobalKey<FormState> _signInKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sigin In'),
+        automaticallyImplyLeading: false,
+        //title: const Text('Sigin In'),
       ),
 
       //Body
@@ -64,6 +83,19 @@ class signInPageState extends State<signInPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                'Sign In',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey, // Customize the text color
+                ),
+              ),
+
+              Text('Sign in with your registered email and password'),
+              SizedBox(
+                height: 50.0,
+              ),
               //Email
               EmailWidget(
                 emailController: email_Controller,
@@ -129,15 +161,15 @@ class signInPageState extends State<signInPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    print("Sign in Clicked");
-                    if (_signInKey.currentState!.validate()) {
-                      Navigator.of(context).pushNamed(RouteProvider.home);
-
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => IndexPage()),
-                      // );
-                    }
+                    signIn();
+                    // if (_signInKey.currentState!.validate()) {
+                    //   // Navigator.of(context).pushNamed(RouteProvider.home);
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(builder: (context) => IndexPage()),
+                    //   );
+                    //   print("Sign in Clicked");
+                    // }
                   },
                   child: const Text('Sign in'),
                 ),
@@ -154,12 +186,12 @@ class signInPageState extends State<signInPage> {
               TextButton(
                   onPressed: () {
                     log('Forgot Password');
-                    Navigator.of(context).pushNamed(RouteProvider.forgot);
+                    // Navigator.of(context).pushNamed(RouteProvider.forgot);
 
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => ForgotPasswordPage()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ForgotPasswordPage()));
                   },
                   child: const Text('Forgot Password')),
 

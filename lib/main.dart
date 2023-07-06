@@ -1,4 +1,7 @@
-import 'package:cms/views/auth/signin.dart';
+// import 'package:cms/views/auth/signin.dart';
+// import 'package:cms/views/conference_admin.dart';
+// import 'package:cms/views/profile.dart';
+import 'package:cms/views/splashScreen.dart';
 // import 'package:cms/views/verification.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +19,7 @@ class MyApp extends StatelessWidget {
       title: 'Conference Management System',
       theme: ThemeData(primarySwatch: Colors.blueGrey, useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home:signInPage(),
+      home:SplashScreen(),
       // home: verificationPage(),
     );
   }
