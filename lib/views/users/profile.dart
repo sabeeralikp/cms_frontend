@@ -1,5 +1,5 @@
-import 'package:cms/views/Index.dart';
-import 'package:cms/views/edit.dart';
+import 'package:cms/views/users/Index.dart';
+import 'package:cms/views/users/edit.dart';
 import 'package:cms/views/auth/signin.dart';
 import 'package:flutter/material.dart';
 
@@ -18,19 +18,28 @@ class _ProfilePageState extends State<ProfilePage> {
     int selectedIndex = 1;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-        automaticallyImplyLeading: false,
-      ),
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      // ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
-          child: SingleChildScrollView(
+          child:SafeArea(child: 
+           SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 20),
+                
+                Text(
+                'Profile',
+                style: TextStyle(
+                  fontSize: 32,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueGrey, // Customize the text color
+                ),
+              ),SizedBox(height: 20,),
+
                 CircleAvatar(
                 radius: 80,
                 // backgroundImage: AssetImage('lib/assets/images/icons8-user-circle-48.png'),
@@ -144,6 +153,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 SizedBox(height: 10,),
               ],
               ),
+          )
           )
         )
       ),

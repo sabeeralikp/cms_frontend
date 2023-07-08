@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:cms/routes/route.dart';
 import 'package:cms/views/auth/signin.dart';
-import 'package:cms/views/verification.dart';
+import 'package:cms/views/auth/verification.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // import 'package:cms/views/auth/signin.dart';

@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 
-import '/views/conference_admin.dart';
+import 'conference_admin.dart';
 
 class FullScreenUser extends StatefulWidget {
   const FullScreenUser({super.key});

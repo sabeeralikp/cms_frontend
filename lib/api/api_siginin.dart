@@ -1,6 +1,6 @@
-import 'package:cms/views/Index.dart';
+// import 'package:cms/views/Index.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class ApiService {
@@ -9,11 +9,11 @@ class ApiService {
       'http://127.0.0.1:8000/'; // Replace with your API base URL
   final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
 
-  Future<Response> signIn(String email, String password) async {
+  Future<Response> signIn(String userName, String password) async {
     try {
       final response = await _dio.post(
         '{$baseUrl}api/token/', // Replace with your sign-in API endpoint
-        data: {'email': email, 'password': password},
+        data: {'email': userName, 'password': password},
       );
 
       // Store access token securely

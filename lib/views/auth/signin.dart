@@ -1,20 +1,21 @@
 import 'dart:developer';
-import 'package:cms/views/auth/widgets/EmailWidget.dart';
+import 'package:cms/views/auth/widgets/TextFieldWidget.dart';
 import 'package:cms/views/auth/widgets/passswordWidget.dart';
-import 'package:cms/views/forgot_password.dart';
+import 'package:cms/views/users/forgot_password.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
-import 'package:cms/views/Index.dart';
+import 'package:cms/views/users/Index.dart';
 import 'package:cms/views/auth/signup.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../api/api_siginin.dart';
 // import '../../routes/route.dart';
 
 class signInPage extends StatefulWidget {
+  signInPage({super.key});
+
   // final TextEditingController emailController = TextEditingController();
   // final TextEditingController passwordTextController = TextEditingController();
-
-  signInPage({super.key});
 
   // final ApiService _apiService = ApiService();
 
@@ -33,33 +34,81 @@ class signInPage extends StatefulWidget {
   //   }
   // }
 
+  final secureStorage = FlutterSecureStorage();
+
   @override
   signInPageState createState() => signInPageState();
+
+
 }
 
 //Header
 class signInPageState extends State<signInPage> {
   String _errorMessage = '';
-  final TextEditingController email_Controller = TextEditingController();
+  final TextEditingController userNameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
-  FocusNode eMail = FocusNode();
+  FocusNode userName = FocusNode();
   FocusNode password = FocusNode();
 
-  final ApiService _apiService = ApiService();
+  // final ApiService _apiService = ApiService();
 
-  void signIn() async {
-    final email = email_Controller.text;
+  // void signIn() async {
+  //   final email = userNameController.text;
+  //   final password = passwordController.text;
+
+  //   try {
+  //     final response = await _apiService.signIn(email, password);
+  //     print(response);
+  //     // Process the response here
+  //     // e.g., check status code, parse JSON response, etc.
+  //   } catch (error) {
+  //     // Handle error
+  //     print('Error signing in: $error');
+  //   }
+
+  final Dio _dio = Dio();
+  // final TextEditingController _usernameController = TextEditingController();
+  // final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _login() async {
+    final username = userNameController.text;
     final password = passwordController.text;
 
+    
+
     try {
-      final response = await _apiService.signIn(email, password);
-      print(response);
-      // Process the response here
-      // e.g., check status code, parse JSON response, etc.
+      // Make login API request
+      final response = await _dio.post(
+        'http://192.168.32.118/api/token/',
+        data: {'username': username, 'password': password},
+        
+      );
+
+      final FlutterSecureStorage _secureStorage = FlutterSecureStorage();
+
+
+      // Store access token securely
+      final accessToken = response.data['access_token'];
+      await _secureStorage.write(key: 'access_token', value: accessToken);
+
+      // Navigate to the home screen
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>IndexPage()));
     } catch (error) {
-      // Handle error
-      print('Error signing in: $error');
+      // Handle login failure
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text('Login Failed'),
+          content: Text('Invalid username or password.'),
+          actions: [
+            TextButton(
+              child: Text('OK'),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+          ],
+        ),
+      );
     }
   }
 
@@ -97,26 +146,13 @@ class signInPageState extends State<signInPage> {
                 height: 50.0,
               ),
               //Email
-              EmailWidget(
-                emailController: email_Controller,
-                FocusNode: eMail,
-                nextField: password,
-              ),
-              // TextFormField(
-              //   keyboardType: TextInputType.emailAddress,
-              //   decoration: const InputDecoration(
-              //       labelText: 'Email', border: OutlineInputBorder()),
-              //       validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'This Field cannot be Empty';
-              //     }
-              //     return null;
-              //   },
-              //   onChanged: (val) {
-              //     validateEmail(val);
-              //   },
-              // ),
-              SizedBox(height: 16.0),
+             TextFieldWidget(
+                    labelText: 'User Name',
+                    textController: userNameController,
+                    FocusNode: userName,
+                    nextField: password,
+                  ),
+                  SizedBox(height: 16.0),
 
               //Password
 
@@ -160,17 +196,18 @@ class signInPageState extends State<signInPage> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
-                  onPressed: () {
-                    signIn();
-                    // if (_signInKey.currentState!.validate()) {
-                    //   // Navigator.of(context).pushNamed(RouteProvider.home);
-                    //   Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(builder: (context) => IndexPage()),
-                    //   );
-                    //   print("Sign in Clicked");
-                    // }
-                  },
+                  onPressed: _login,
+                  // () {
+                  //   // signIn();
+                  //   if (_signInKey.currentState!.validate()) {
+                  //     // Navigator.of(context).pushNamed(RouteProvider.home);
+                  //     Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (context) => IndexPage()),
+                  //     );
+                  //     print("Sign in Clicked");
+                  //   }
+                  // },
                   child: const Text('Sign in'),
                 ),
               ),

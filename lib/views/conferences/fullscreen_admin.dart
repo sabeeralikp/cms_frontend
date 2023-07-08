@@ -1,5 +1,6 @@
+import 'package:cms/views/conferences/request.dart';
 import 'package:flutter/material.dart';
-import '/views/conference_admin.dart';
+import 'conference_admin.dart';
 
 class FullScreen_admin extends StatefulWidget {
   @override
@@ -25,7 +26,19 @@ class _FullScreen_adminState extends State<FullScreen_admin> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('New Conference')),
+        appBar: AppBar(
+          title: const Text('New Conference'),
+          actions: [
+            new TextButton(
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => requstPage()));
+                },
+                child: new Text(
+                  'Save',
+                )),
+          ],
+        ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Form(
@@ -72,27 +85,6 @@ class _FullScreen_adminState extends State<FullScreen_admin> {
                   maxLines: null,
                 ),
                 SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    //Save Button
-                    TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: Text('Cancel')),
-
-                    //Cancel Button
-                    TextButton(
-                      onPressed: () {
-                        setState(() {
-                          // DataMethod();
-                        });
-                      },
-                      child: Text('Save'),
-                    ),
-                  ],
-                ),
               ],
             ),
           ),
