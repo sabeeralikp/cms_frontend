@@ -67,9 +67,17 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Powered and maintained by',
-                      style: TextStyle(fontSize: 12, color: Colors.grey[350]),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                        'Powered and maintained by',
+                        style: TextStyle(fontSize: 12, color: Colors.grey[350]),
+                      ),
+                      Image.asset('assets/images/icfooss_logo1.png',
+                      height: 30,
+                      )
+                      ]
                     ),
                   ],
                 ),

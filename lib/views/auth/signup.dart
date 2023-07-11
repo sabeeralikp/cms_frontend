@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:cms/routes/route.dart';
+// import 'package:cms/routes/route.dart';
 import 'package:cms/views/auth/signin.dart';
 import 'package:cms/views/auth/verification.dart';
 import 'package:dio/dio.dart';
@@ -195,11 +195,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     controller: _confirmpassword,
                     focusNode: cnfrm,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      labelText: 'Confirm Password',
                       suffixIcon: IconButton(
                         icon: Icon(passwordVisible
-                            ? Icons.visibility_off
-                            : Icons.visibility),
+                            ? Icons.visibility
+                            : Icons.visibility_off),
                         onPressed: () {
                           setState(
                             () {
@@ -233,7 +233,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onPressed: () {
                       log('Already registered');
                       // Navigator.of(context).pushNamed(RouteProvider.signUp);
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => signInPage()),
                       );

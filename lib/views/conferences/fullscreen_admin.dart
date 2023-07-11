@@ -1,5 +1,9 @@
+import 'package:cms/views/conferences/conferenceSettings.dart';
 import 'package:cms/views/conferences/request.dart';
+// import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+// import '../../api/api.dart';
+// import '../../models/User.dart';
 import 'conference_admin.dart';
 
 class FullScreen_admin extends StatefulWidget {
@@ -8,12 +12,15 @@ class FullScreen_admin extends StatefulWidget {
 }
 
 class _FullScreen_adminState extends State<FullScreen_admin> {
-  String enteredText1 = '';
-  String enteredText2 = '';
-  String enteredText3 = '';
+
   TextEditingController title = new TextEditingController();
   TextEditingController description = new TextEditingController();
   TextEditingController instructions = new TextEditingController();
+  TextEditingController shortName = new TextEditingController();
+  TextEditingController track = new TextEditingController();
+  TextEditingController website = new TextEditingController();
+
+
 
   // Future<List> senddata() async {
   //   final response = await http.post("THE API GOES HERE" as Uri, body: {
@@ -28,15 +35,29 @@ class _FullScreen_adminState extends State<FullScreen_admin> {
     return Scaffold(
         appBar: AppBar(
           title: const Text('New Conference'),
-          actions: [
+          actions: <Widget>[
             new TextButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => requstPage()));
-                },
-                child: new Text(
-                  'Save',
-                )),
+              onPressed: () {
+                // createConference();
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => requstPage()));
+              },
+              child: new Text(
+                'Save',
+              ),
+            ),
+            Padding(
+            padding: EdgeInsets.all(8.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>  ConferenceSettings()));
+              },
+              child: Icon(Icons.info_outline),
+            ),
+          )
           ],
         ),
         body: Padding(
@@ -46,9 +67,7 @@ class _FullScreen_adminState extends State<FullScreen_admin> {
               children: [
                 TextField(
                   controller: title,
-                  onChanged: (value) {
-                    enteredText1 = value;
-                  },
+                  onChanged: (value) {},
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: 'Enter title',
@@ -58,13 +77,44 @@ class _FullScreen_adminState extends State<FullScreen_admin> {
                 ),
                 SizedBox(height: 16.0),
                 TextField(
-                  controller: description,
-                  onChanged: (value) {
-                    enteredText2 = value;
-                  },
+                  controller: shortName,
+                  onChanged: (value) {},
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
-                    labelText: 'Enter description',
+                    labelText: 'Short Name',
+                    border: OutlineInputBorder(),
+                    focusedBorder: myFocusBoder(),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: track,
+                  onChanged: (value) {},
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    labelText: 'Track',
+                    border: OutlineInputBorder(),
+                    focusedBorder: myFocusBoder(),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: description,
+                  onChanged: (value) {},
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    border: OutlineInputBorder(),
+                    focusedBorder: myFocusBoder(),
+                  ),
+                ),
+                SizedBox(height: 16.0),
+                TextField(
+                  controller: website,
+                  onChanged: (value) {},
+                  keyboardType: TextInputType.name,
+                  decoration: InputDecoration(
+                    labelText: 'Conference Website',
                     border: OutlineInputBorder(),
                     focusedBorder: myFocusBoder(),
                   ),
@@ -72,9 +122,7 @@ class _FullScreen_adminState extends State<FullScreen_admin> {
                 SizedBox(height: 16.0),
                 TextField(
                   controller: instructions,
-                  onChanged: (value) {
-                    enteredText3 = value;
-                  },
+                  onChanged: (value) {},
                   keyboardType: TextInputType.name,
                   decoration: InputDecoration(
                     labelText: 'Instructions to Notice',

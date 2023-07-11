@@ -4,11 +4,11 @@ import 'package:cms/views/auth/widgets/passswordWidget.dart';
 import 'package:cms/views/users/forgot_password.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:email_validator/email_validator.dart';
+// import 'package:email_validator/email_validator.dart';
 import 'package:cms/views/users/Index.dart';
 import 'package:cms/views/auth/signup.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../../api/api_siginin.dart';
+// import '../../api/api_siginin.dart';
 // import '../../routes/route.dart';
 
 class signInPage extends StatefulWidget {
@@ -161,19 +161,7 @@ class signInPageState extends State<signInPage> {
                 FocusNode: password,
                 nextField: null,
               ),
-              // TextFormField(
-              //   keyboardType: TextInputType.visiblePassword,
-              //   decoration: const InputDecoration(
-              //       labelText: 'Password', border: OutlineInputBorder()),
-              //   obscureText: true,
-              //   validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'This Field cannot be Empty';
-              //     }
-              //     return null;
-              //   },
-              //   onChanged: (val) {},
-              // ),
+              
               SizedBox(height: 16.0),
 
               //Password Validation
@@ -197,17 +185,7 @@ class signInPageState extends State<signInPage> {
                 padding: const EdgeInsets.all(8.0),
                 child: ElevatedButton(
                   onPressed: _login,
-                  // () {
-                  //   // signIn();
-                  //   if (_signInKey.currentState!.validate()) {
-                  //     // Navigator.of(context).pushNamed(RouteProvider.home);
-                  //     Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(builder: (context) => IndexPage()),
-                  //     );
-                  //     print("Sign in Clicked");
-                  //   }
-                  // },
+                 
                   child: const Text('Sign in'),
                 ),
               ),
@@ -223,9 +201,7 @@ class signInPageState extends State<signInPage> {
               TextButton(
                   onPressed: () {
                     log('Forgot Password');
-                    // Navigator.of(context).pushNamed(RouteProvider.forgot);
-
-                    Navigator.push(
+                    Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ForgotPasswordPage()));
@@ -237,8 +213,7 @@ class signInPageState extends State<signInPage> {
                   //  _signIn();
                   onPressed: () {
                     print("Sign Up clicked");
-                    // Navigator.of(context).pushNamed(RouteProvider.signUp);
-                    Navigator.push(
+                    Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(builder: (context) => SignUpScreen()),
                     );
@@ -251,20 +226,20 @@ class signInPageState extends State<signInPage> {
     );
   }
 
-  //Email Validation
-  void validateEmail(String val) {
-    if (val.isEmpty) {
-      setState(() {
-        _errorMessage = "Email can not be empty";
-      });
-    } else if (!EmailValidator.validate(val, true)) {
-      setState(() {
-        _errorMessage = "Invalid Email Address";
-      });
-    } else {
-      setState(() {
-        _errorMessage = "";
-      });
-    }
-  }
+  // //Email Validation
+  // void validateEmail(String val) {
+  //   if (val.isEmpty) {
+  //     setState(() {
+  //       _errorMessage = "Email can not be empty";
+  //     });
+  //   } else if (!EmailValidator.validate(val, true)) {
+  //     setState(() {
+  //       _errorMessage = "Invalid Email Address";
+  //     });
+  //   } else {
+  //     setState(() {
+  //       _errorMessage = "";
+  //     });
+  //   }
+  // }
 }

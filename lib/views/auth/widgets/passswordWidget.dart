@@ -31,8 +31,8 @@ class _PasswordWidgetState extends State<PasswordWidget> {
       decoration: InputDecoration(
         labelText: 'Password',
         suffixIcon: IconButton(icon: Icon(passwordVisible
-                         ? Icons.visibility_off
-                         : Icons.visibility), onPressed: () {  
+                         ? Icons.visibility
+                         : Icons.visibility_off), onPressed: () {  
                           setState(() {
                            passwordVisible = !passwordVisible;
                           }, );
@@ -52,26 +52,3 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     );
   }
 }
-
-
-// TextFormField passwordWidget()  {
-//     return TextFormField(
-//               controller: _passwordController,
-//               decoration: InputDecoration(
-//                 labelText: 'Password',
-//                 border: OutlineInputBorder(),
-//                 errorText: _passwordError,
-//               ),
-//               obscureText: true,
-//               validator: passwordValidator,
-//               onSaved: (value) {
-//                 _password = value!;
-//               },
-//               onChanged: (value) {
-//                 setState(() {
-//                   _passwordError = passwordValidator(value);
-//                   // Set the validation status
-//                 });
-//               },
-//             );
-//   }

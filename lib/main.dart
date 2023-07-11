@@ -2,7 +2,9 @@
 // import 'package:cms/views/conference_admin.dart';
 // import 'package:cms/views/profile.dart';
 // import 'package:cms/views/conferences/fullscreen_admin.dart';
+import 'package:cms/views/Review/review.dart';
 import 'package:cms/views/splashScreen.dart';
+import 'package:cms/views/Review/ReviewNav.dart';
 // import 'package:cms/views/users/Index.dart';
 // import 'package:cms/views/verification.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
       title: 'Conference Management System',
       theme: ThemeData(primarySwatch: Colors.blueGrey, useMaterial3: true),
       debugShowCheckedModeBanner: false,
-      home:SplashScreen(),
+      // home:SplashScreen(),
+      home: reviewPage(),
     );
   }
 }
