@@ -1,6 +1,7 @@
 import 'package:cms/views/conferences/conference_admin.dart';
 import 'package:cms/views/conferences/conference_user.dart';
 import 'package:cms/views/conferences/fullscreen_user.dart';
+import 'package:cms/views/conferences/myConference.dart';
 // import 'package:cms/views/conferences/request.dart';
 import 'package:flutter/material.dart';
 import 'profile.dart';
@@ -38,15 +39,8 @@ class _IndexPageState extends State<IndexPage> {
         ),
         body: const TabBarView(
           children: <Widget>[
-            Conference_User(),FullScreenUser()
-            // Center(
-            //   // child: Text('data'),
-            //   // Navigator.push(context, MaterialPageRoute(builder: (context)=> Conference_User())),
-            // ),
-            // Center(
-            //   child: Text("121"),
-            //   // child: Navigator.push(context, MaterialPageRoute(builder: (context)=> FullScreenUser())),
-            // ),
+            Conference_User(),
+            myConference()
           ],
         ),
 
