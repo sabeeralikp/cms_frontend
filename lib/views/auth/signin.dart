@@ -141,7 +141,7 @@ class signInPageState extends State<signInPage> {
                 ),
               ),
 
-              Text('Sign in with your registered email and password'),
+              Text('Sign in with your registered User Name and password'),
               SizedBox(
                 height: 50.0,
               ),

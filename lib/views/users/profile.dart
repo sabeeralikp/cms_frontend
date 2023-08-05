@@ -1,4 +1,4 @@
-import 'package:cms/views/Review/requstForReview.dart';
+import 'package:cms/views/review/requstForReview.dart';
 import 'package:cms/views/users/Index.dart';
 import 'package:cms/views/users/edit.dart';
 import 'package:cms/views/auth/signin.dart';
@@ -99,11 +99,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              const ListTile(
-                                leading: Icon(Icons.file_present),
-                                title: Text('Registered Conferences'),
-                                // subtitle: Text('Subtitle'),
-                              ),
                               ListTile(
                                 leading: Icon(Icons.verified),
                                 title: Text('Review'),

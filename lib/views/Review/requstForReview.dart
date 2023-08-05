@@ -1,4 +1,4 @@
-import 'package:cms/views/Review/requstReview.dart';
+import 'package:cms/views/review/requstReview.dart';
 import 'package:cms/views/users/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -40,7 +40,7 @@ class _requsReviewPageState extends State<requsReviewPage> {
                     ),
                     TextButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => requsReviewerPage()));
@@ -61,7 +61,7 @@ class _requsReviewPageState extends State<requsReviewPage> {
                   children: [
                     TextButton(
                         onPressed: () {
-                          Navigator.push(
+                          Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => ProfilePage()));

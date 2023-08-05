@@ -57,7 +57,7 @@ class _verificationPageState extends State<verificationPage> {
                     children: [
                       TextButton(
                           onPressed: () {
-                            Navigator.push(
+                            Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => signInPage()));

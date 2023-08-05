@@ -1,5 +1,5 @@
-import 'package:cms/views/Review/requested.dart';
-import 'package:cms/views/users/profile.dart';
+import 'package:cms/views/review/requested.dart';
+// import 'package:cms/views/users/profile.dart';
 import 'package:flutter/material.dart';
 
 class requsReviewerPage extends StatefulWidget {
@@ -27,7 +27,7 @@ class _requsReviewerPageState extends State<requsReviewerPage> {
             child: Column(
               children: [
                 Text(
-                  'Applty to be a Reviewer',
+                  'Apply to be a Reviewer',
                   style: TextStyle(
                     fontSize: 32,
                     fontWeight: FontWeight.bold,

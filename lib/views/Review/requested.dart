@@ -55,7 +55,7 @@ class _requestedPageState extends State<requestedPage> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder: (context) => ProfilePage()),
                       );
