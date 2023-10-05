@@ -28,12 +28,12 @@ class _requsReviewPageState extends State<requsReviewPage> {
                     Text(
                       'Send Request to become a Reviewer',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 23),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     SvgPicture.asset(
                       'assets/images/review.svg',
                       semanticsLabel: 'SVG Image',
-                      width: 400,
+                      width: 300.0,
                     ),
                     SizedBox(
                       height: 10.0,

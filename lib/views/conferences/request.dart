@@ -22,6 +22,7 @@ class _requstPageState extends State<requstPage> {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
               Column(
                 children: [
@@ -32,7 +33,7 @@ class _requstPageState extends State<requstPage> {
                   SvgPicture.asset(
                     'assets/images/Acceptrequest-bro.svg',
                     semanticsLabel: 'SVG Image',
-                    width: 400,
+                    width: 300.0,
                   ),
                   SizedBox(
                     height: 10.0,

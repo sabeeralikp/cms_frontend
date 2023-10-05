@@ -22,6 +22,7 @@ class _myConferenceState extends State<myConference> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Conference"),
+        automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
         itemCount: dataList.length,

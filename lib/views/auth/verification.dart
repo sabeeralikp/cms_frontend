@@ -18,57 +18,59 @@ class _verificationPageState extends State<verificationPage> {
         title: Text(''),
         automaticallyImplyLeading: false,
       ),
-      body: Stack(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Text(
-                    'Verify your account in your inbox',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
-                  ),
-                  SvgPicture.asset(
-                    'assets/images/Emails-bro.svg',
-                    semanticsLabel: 'SVG Image',
-                    width: 400,
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
-                  TextButton(
-                      onPressed: () {
-                        _launchThirdPartyApp();
-                      },
-                      child: Text("Please verify your account in you Inbox")),
-                ],
-              )
-            ],
-          ),
-          Positioned(
-                left: 0,
-                bottom: 10,
-                right: 0,
-                child: Container(
-                  height: 100,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => signInPage()));
-                          },
-                          child: Text("Verified? SignIn")),
-                    ],
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: [
+                    Text(
+                      'Verify your account in your inbox',
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    ),
+                    SvgPicture.asset(
+                      'assets/images/Emails-bro.svg',
+                      semanticsLabel: 'SVG Image',
+                      width: 400,
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    TextButton(
+                        onPressed: () {
+                          _launchThirdPartyApp();
+                        },
+                        child: Text("Please verify your account in you Inbox")),
+                  ],
+                )
+              ],
+            ),
+            Positioned(
+                  left: 0,
+                  bottom: 10,
+                  right: 0,
+                  child: Container(
+                    height: 100,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => signInPage()));
+                            },
+                            child: Text("Verified? SignIn")),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-
-        ],
+      
+          ],
+        ),
       )
     );
   }
