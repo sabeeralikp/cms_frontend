@@ -1,4 +1,8 @@
-import 'package:cms/views/conference_user.dart';
+import 'package:cms/views/conferences/conference_admin.dart';
+import 'package:cms/views/conferences/conference_user.dart';
+// import 'package:cms/views/conferences/fullscreen_user.dart';
+import 'package:cms/views/conferences/myConference.dart';
+// import 'package:cms/views/conferences/request.dart';
 import 'package:flutter/material.dart';
 import 'profile.dart';
 
@@ -14,34 +18,44 @@ class _IndexPageState extends State<IndexPage> {
   Widget build(BuildContext context) {
     int selectedIndex = 0;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Home'),
+    return DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(''),
         automaticallyImplyLeading: false,
-      ),
-
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text('NewsLetter'),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Conference_User()),
-                    );
-                  },
-                  child: const Text('Conferences'))
+        
+          bottom: const TabBar(
+            tabs: <Widget>[
+              Tab(
+                text:'New Conference',
+              ),
+              Tab(
+                text:'My Conferences',
+              ),
             ],
-          )
-        ],
+          ),
+        ),
+        body: const TabBarView(
+          children: <Widget>[
+            Conference_User(),
+            myConference()
+          ],
+        ),
+
+
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        floatingActionButton: FloatingActionButton.extended(
+
+        onPressed: () => Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => Conference_admin(),)),
+        label: Text('Hosted Conferences'),
+        icon: Icon(Icons.add),
       ),
 
       //Bottom Navigation
+
       bottomNavigationBar: MediaQuery.of(context).size.width < 640
           ? BottomNavigationBar(
               currentIndex: selectedIndex,
@@ -54,12 +68,12 @@ class _IndexPageState extends State<IndexPage> {
 
                 switch (index) {
                   case 0:
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => IndexPage()));
                     break;
 
                   case 1:
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => ProfilePage()));
                     break;
 
@@ -75,6 +89,7 @@ class _IndexPageState extends State<IndexPage> {
               ],
             )
           : null,
+      ),
     );
   }
 }

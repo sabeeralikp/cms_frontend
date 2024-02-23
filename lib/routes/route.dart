@@ -1,10 +1,10 @@
 // import 'dart:js';
 
-import 'package:cms/views/Index.dart';
+import 'package:cms/views/users/Index.dart';
 import 'package:cms/views/auth/signin.dart';
 import 'package:cms/views/auth/signup.dart';
-import 'package:cms/views/forgot_password.dart';
-import 'package:cms/views/verification.dart';
+import 'package:cms/views/users/forgot_password.dart';
+import 'package:cms/views/auth/verification.dart';
 import 'package:flutter/material.dart';
 
 class RouteProvider {

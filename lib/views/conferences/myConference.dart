@@ -1,36 +1,28 @@
 import 'package:flutter/material.dart';
-import './fullscreen_admin.dart';
+import '/controller/conference_controller.dart';
+import 'fullscreen_user.dart';
 
-class Conference_admin extends StatefulWidget {
-  const Conference_admin({super.key});
+class myConference extends StatefulWidget {
+  const myConference({super.key});
 
   @override
-  _Conference_adminState createState() => _Conference_adminState();
+  _myConferenceState createState() => _myConferenceState();
 }
 
-class Words {
-  String enteredText1 = '';
-  String enteredText2 = '';
+class _myConferenceState extends State<myConference> {
+  static List<String> dataList = ['Conference1', 'Conference2'];
 
-  Words({required this.enteredText1, required this.enteredText2});
-}
-
-class _Conference_adminState extends State<Conference_admin> {
-  List<Words> dataList = [];
+  final List<ConferenceController> ConferenceData = List.generate(
+      dataList.length,
+      (index) => ConferenceController(
+          dataList[index], '${dataList[index]}Description.....'));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Conferences"),
-        actions: [
-          new TextButton(
-              onPressed: () {
-                //TODO: Handle save
-              },
-              child: new Text('Save',)
-            ),
-        ],
+        title: const Text("Conference"),
+        automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
         itemCount: dataList.length,
@@ -39,30 +31,35 @@ class _Conference_adminState extends State<Conference_admin> {
             color: Colors.grey.shade300,
             child: ListTile(
               title: Text(
-                dataList[index].enteredText1,
+                dataList[index],
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: const Icon(Icons.delete),
               subtitle: Text(
-                dataList[index].enteredText2,
+                dataList[index],
                 style: const TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.normal,
                 ),
               ),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const FullScreenUser(),
+                    fullscreenDialog: true));
+              },
             ),
           );
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => FullScreen_admin(), fullscreenDialog: true)),
-        child: const Icon(Icons.add),
-      ),
+      
+
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: _showDialog,
+      //   child: Icon(Icons.add),
+      // ),
     );
   }
 }

@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:cms/views/profile.dart';
+import 'package:cms/views/users/profile.dart';
 import 'package:flutter/material.dart';
 
 class editScreen extends StatefulWidget {

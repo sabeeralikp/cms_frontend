@@ -1,6 +1,7 @@
 import 'dart:developer';
-import 'package:cms/routes/route.dart';
-import 'package:cms/views/verification.dart';
+// import 'package:cms/routes/route.dart';
+import 'package:cms/views/auth/signin.dart';
+import 'package:cms/views/auth/verification.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 // import 'package:cms/views/auth/signin.dart';
@@ -16,6 +17,7 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  bool passwordVisible = false;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -119,99 +121,129 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
+        appBar: AppBar(
+          // title: Text('Register'),
+          automaticallyImplyLeading: false,
+        ),
+        body: Padding(
+          padding: EdgeInsets.all(16.0),
           child: Form(
             key: _formKey,
-            child: ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(16.0),
-              children: [
-                SizedBox(height: 16.0),
-
-                //User Name
-                TextFieldWidget(
-                  labelText: 'User Name',
-                  textController: user_name,
-                  FocusNode: UserName,
-                  nextField: FirstName,
-                ),
-                SizedBox(height: 16.0),
-
-                //F.Name
-                TextFieldWidget(
-                  labelText: 'First Name',
-                  textController: first_name,
-                  FocusNode: FirstName,
-                  nextField: LastName,
-                ),
-                SizedBox(height: 16.0),
-
-                //L.Name
-                TextFieldWidget(
-                  labelText: 'Last Name',
-                  textController: last_name,
-                  FocusNode: LastName,
-                  nextField: eMail,
-                ),
-                SizedBox(height: 16.0),
-
-                //Email
-                EmailWidget(
-                  emailController: emailController,
-                  FocusNode: eMail,
-                  nextField: password,
-                ),
-                SizedBox(height: 16.0),
-
-                //Password
-                PasswordWidget(
-                  passwordController: _passwordController,
-                  FocusNode: password,
-                  nextField: cnfrm,
-                ),
-                SizedBox(height: 16.0),
-
-                //cnfrm pwd
-                TextFormField(
-                  controller: _confirmpassword,
-                  focusNode: cnfrm,
-                  decoration: InputDecoration(
-                    labelText: 'Confirm Password',
-                    border: OutlineInputBorder(),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Text(
+                    'Register',
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueGrey, // Customize the text color
+                    ),
                   ),
-                  obscureText: true,
-                ),
-                SizedBox(height: 16.0),
 
-                //Button
-                Padding(
-                  padding: const EdgeInsets.all(50.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      validateForm();
-                      _registerUser();
-                    },
-                    child: const Text('Sign Up'),
+                  Text('Please register email and password'),
+                  SizedBox(
+                    height: 50.0,
                   ),
-                ),
+                  // SizedBox(height: 16.0),
 
-                //Already Registered
-                TextButton(
+                  // User Name
+                  TextFieldWidget(
+                    labelText: 'User Name',
+                    textController: user_name,
+                    FocusNode: UserName,
+                    nextField: FirstName,
+                  ),
+                  SizedBox(height: 16.0),
+
+                  // F.Name
+                  TextFieldWidget(
+                    labelText: 'First Name',
+                    textController: first_name,
+                    FocusNode: FirstName,
+                    nextField: LastName,
+                  ),
+                  SizedBox(height: 16.0),
+
+                  // L.Name
+                  TextFieldWidget(
+                    labelText: 'Last Name',
+                    textController: last_name,
+                    FocusNode: LastName,
+                    nextField: eMail,
+                  ),
+                  SizedBox(height: 16.0),
+
+                  // Email
+                  EmailWidget(
+                    emailController: emailController,
+                    FocusNode: eMail,
+                    nextField: password,
+                  ),
+                  SizedBox(height: 16.0),
+
+                  // Password
+                  PasswordWidget(
+                    passwordController: _passwordController,
+                    FocusNode: password,
+                    nextField: cnfrm,
+                  ),
+                  SizedBox(height: 16.0),
+
+                  // cnfrm pwd
+                  TextFormField(
+                    controller: _confirmpassword,
+                    focusNode: cnfrm,
+                    decoration: InputDecoration(
+                      labelText: 'Confirm Password',
+                      suffixIcon: IconButton(
+                        icon: Icon(passwordVisible
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(
+                            () {
+                              passwordVisible = !passwordVisible;
+                            },
+                          );
+                        },
+                      ),
+                      alignLabelWithHint: false,
+                      
+                      border: OutlineInputBorder(),
+                      // errorText: widget.passwordError,
+                    ),
+                    obscureText: !passwordVisible,
+                  ),
+                  SizedBox(height: 16.0),
+                  // Button
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        validateForm();
+                        _registerUser();
+                      },
+                      child: const Text('Sign Up'),
+                    ),
+                  ),
+
+                  // Already Registered
+                  TextButton(
                     onPressed: () {
                       log('Already registered');
-                      Navigator.of(context).pushNamed(RouteProvider.signUp);
+                      // Navigator.of(context).pushNamed(RouteProvider.signUp);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => signInPage()),
+                      );
                     },
-                    child: const Text('Already Registered? Sign In')),
-              ],
+                    child: const Text('Already Registered? Sign In'),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }

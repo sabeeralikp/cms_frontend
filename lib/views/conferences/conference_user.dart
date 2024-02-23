@@ -22,6 +22,7 @@ class _ConferenceUserState extends State<Conference_User> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Conference"),
+        automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
         itemCount: dataList.length,
@@ -36,7 +37,6 @@ class _ConferenceUserState extends State<Conference_User> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              // trailing: Icon(Icons.delete),
               subtitle: Text(
                 dataList[index],
                 style: const TextStyle(

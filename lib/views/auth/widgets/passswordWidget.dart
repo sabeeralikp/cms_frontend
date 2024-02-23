@@ -19,6 +19,7 @@ class PasswordWidget extends StatefulWidget {
 }
 
 class _PasswordWidgetState extends State<PasswordWidget> {
+  bool passwordVisible=false; 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -29,10 +30,18 @@ class _PasswordWidgetState extends State<PasswordWidget> {
         },
       decoration: InputDecoration(
         labelText: 'Password',
+        suffixIcon: IconButton(icon: Icon(passwordVisible
+                         ? Icons.visibility
+                         : Icons.visibility_off), onPressed: () {  
+                          setState(() {
+                           passwordVisible = !passwordVisible;
+                          }, );
+                         },),
+        alignLabelWithHint: false,
         border: OutlineInputBorder(),
         // errorText: widget.passwordError,
       ),
-      obscureText: true,
+      obscureText: !passwordVisible,
       validator: passwordValidator,
       onChanged: (value) {
         setState(() {
@@ -43,26 +52,3 @@ class _PasswordWidgetState extends State<PasswordWidget> {
     );
   }
 }
-
-
-// TextFormField passwordWidget()  {
-//     return TextFormField(
-//               controller: _passwordController,
-//               decoration: InputDecoration(
-//                 labelText: 'Password',
-//                 border: OutlineInputBorder(),
-//                 errorText: _passwordError,
-//               ),
-//               obscureText: true,
-//               validator: passwordValidator,
-//               onSaved: (value) {
-//                 _password = value!;
-//               },
-//               onChanged: (value) {
-//                 setState(() {
-//                   _passwordError = passwordValidator(value);
-//                   // Set the validation status
-//                 });
-//               },
-//             );
-//   }
